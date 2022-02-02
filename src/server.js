@@ -49,7 +49,7 @@ server.applyMiddleware({ app, path: '/graphql' });
 const httpServer = http.createServer(app);
 server.installSubscriptionHandlers(httpServer);
 
-app.use(express.static('public'))
+app.use(express.static('frontend/build'))
 app.use(cors());
 app.use(graphqlUploadExpress());
 
