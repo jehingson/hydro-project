@@ -68,9 +68,16 @@ server.applyMiddleware({
 const httpServer = _http.default.createServer(app);
 
 server.installSubscriptionHandlers(httpServer);
-app.use(_express.default.static('public'));
 app.use((0, _cors.default)());
 app.use((0, _graphqlUpload.graphqlUploadExpress)());
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(_express.default.static('frontend/dist'));
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'frontend', 'dist', 'index.html'));
+  });
+}
+
 const port = process.env.PORT || 3000;
 httpServer.listen({
   port
