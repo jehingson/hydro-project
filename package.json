@@ -3,18 +3,19 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=development nodemon src/server.js --exec babel-node",
+    "start": "node build/server.js",
     "build": "babel src/ --out-dir build",
-    "server": "node build/server.js",
-    "client": "cd client && run start",
+    "server": "cross-env NODE_ENV=development nodemon src/server.js --exec babel-node",
+    "client": "cd frontend && npm run dev",
     "server-install": "npm install",
-    "client-install": "cd client && npm install",
+    "client-install": "cd frontend && npm install",
     "dev": "concurrently \" npm run server \" \" npm run client \"",
+    "install-all": "concurrently \" npm run server-install \" \" npm run client-install \"",
+    "heroku-postbuild": "cd frontend && npm install && npm run build",
+
     "sequelize:create-migration": "cd src && npx sequelize migration:create",
-    "sequelize:migrate": "cd src && npx sequelize-cli db:migrate",
-    "heroku-postbuild": "npm install && npm run build"
+    "sequelize:migrate": "cd src && npx sequelize-cli db:migrate"
   },
-  
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -48,17 +49,17 @@
     "sequelize": "^6.6.5",
     "sequelize-cli": "^6.4.1",
     "uuid": "^3.3.2",
-    "validator": "^10.9.0"
+    "validator": "^10.9.0",
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.0",
+    "@babel/node": "^7.8.8",
+    "@babel/preset-env": "^7.9.11"
   },
   "resolutions": {
     "fs-capacitor": "^6.2.0",
     "graphql-upload": "^12.0.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.8.4",
-    "@babel/core": "^7.9.0",
-    "@babel/node": "^7.8.8",
-    "@babel/preset-env": "^7.9.11",
     "nodemon": "^2.0.15"
   }
 }
