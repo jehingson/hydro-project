@@ -26,7 +26,7 @@ const client = new ApolloClient({
   link: from([
     activityMiddleware,
     createUploadLink({
-      uri: 'http://localhost:5000/graphql',
+      uri: 'https://hydro-graphql-node.herokuapp.com/graphql',
       fetch
     })
   ]),
