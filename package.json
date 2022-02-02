@@ -3,9 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start:init": "node server.js",
-    "start": "cd app && npm run start:init",
-    "build": "babel src/ --out-dir build",
+    "start": "node server.js",
+    "build": "babel src/ --out-dir app",
     "server": "cross-env NODE_ENV=development nodemon src/server.js --exec babel-node",
     "client": "cd frontend && npm run dev",
     "server-install": "npm install",
