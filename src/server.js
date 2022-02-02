@@ -49,9 +49,17 @@ server.applyMiddleware({ app, path: '/graphql' });
 const httpServer = http.createServer(app);
 server.installSubscriptionHandlers(httpServer);
 
-app.use(express.static('frontend/build'))
+
 app.use(cors());
 app.use(graphqlUploadExpress());
+
+if(process.env.NODE_ENV === 'production'){
+  app.use(express.static('frontend/dist'))
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'fontend','dist', 'index.html' ))
+  })
+}
+
 
 
 const port = process.env.PORT || 3000;
