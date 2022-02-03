@@ -1,0 +1,38 @@
+"use strict";
+
+const {
+  gql
+} = require('apollo-server-express');
+
+module.exports = gql`
+  type Post {
+    id: Int!
+    title: String!
+    description: String!
+    status: Boolean!
+    image: String!
+    user: User!
+    createdAt: DateTime! # will be generated
+    updatedAt: DateTime! # will be generated
+  }
+  
+  extend type Query {
+    allPost: [Post!]!
+    fetchPost(id: Int!): Post
+  }
+  extend type Mutation {
+    addPost (
+        title: String!,
+        description: String!,
+        image: String!
+    ): Post!
+    updatePost (
+        id: Int!,
+        title: String!,
+        description: String
+    ): Post!
+    deletePost (
+        id: Int!
+    ): Post!
+  }
+`;

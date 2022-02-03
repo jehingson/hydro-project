@@ -4,7 +4,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node build/server.js",
-    "build": "babel src/ --out-dir build",
+    "build": "babel src/ --out-dir buildd",
     "server": "cross-env NODE_ENV=development nodemon src/server.js --exec babel-node",
     "client": "cd frontend && npm run dev",
     "server-install": "npm install",
