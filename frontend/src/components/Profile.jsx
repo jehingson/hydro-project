@@ -4,13 +4,13 @@ import { Context } from '../context/Context';
 import axios from 'axios'
 import { UPDATE_USER } from '../graphql/mutations';
 import { useMutation, useQuery } from '@apollo/client';
-import { All_POST, FETCH_USER } from '../graphql/queries';
+import { FETCH_USER } from '../graphql/queries';
 
 
 function Profile() {
   const { removeAuth, users, setUser } = useContext(Context)
   const [updateUser] = useMutation(UPDATE_USER, {
-    refetchQueries: [{ query: All_POST }, {query: FETCH_USER }], 
+    refetchQueries: [ {query: FETCH_USER }], 
     onCompleted: (data) => {
       setUser(data)
     }

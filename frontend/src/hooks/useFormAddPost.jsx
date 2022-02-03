@@ -18,7 +18,7 @@ export const useFormAddPost = (initialForm, validateFrom, images, setImages) => 
 
 
     const [createPost] = useMutation(ADD_POST, {
-        refetchQueries: [{query: All_POST}],
+      //  refetchQueries: [{query: All_POST}],
         onCompleted: (data) => {
             notifyCompled('Publicacion creada con éxito')
         },

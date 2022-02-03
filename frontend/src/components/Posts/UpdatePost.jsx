@@ -11,9 +11,8 @@ function UpdatePost({ id, title, description, setFetchUpdate }) {
   const [errors, setErrors] = useState({})
 
   const [postUpdate] = useMutation(UPDATE_POST, {
-    refetchQueries: [{ query: All_POST }],
     onCompleted: (data) => {
-      setFetchUpdate(false)
+        setFetchUpdate(false)
     },
     onError: (error) => {
       alert('Error con esta peticion, intentelo nuevamenta mas tarde!');
@@ -34,8 +33,6 @@ function UpdatePost({ id, title, description, setFetchUpdate }) {
     if (newDescription.trim().length > 240) {
       error.description = "Descripción debe ser menor de 240 caracteres"
     }
-
-    console.log('asddasd', newDescription, newTitle)
 
     if (Object.keys(error).length === 0) {
       postUpdate({ variables:{ id, title: newTitle, description: newDescription} })

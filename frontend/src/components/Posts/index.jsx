@@ -7,10 +7,10 @@ import { Context } from '../../context/Context';
 
 function Posts() {
   const { users } = useContext(Context)
-  const { data, error } = useQuery(All_POST)
-  console.log('login', error)
+  const { data, error } = useQuery(All_POST,{
+    pollInterval: 2000
+  })
   if(error) return null
-  
   return <div>
     {
       data && data.allPost?.map(post => <PostDetail 

@@ -70,7 +70,6 @@ export const useFormLogin = (initialForm, validateFrom, register) => {
         setErrors(validateFrom(form))
         setLoading(true)
         if (!register && !errors.email && !errors.password) {
-            console.log('form', form, register)
             login({
                 variables: {
                     email: form.email,
